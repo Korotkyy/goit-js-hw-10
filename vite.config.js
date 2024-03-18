@@ -1,30 +1,23 @@
 import { defineConfig } from 'vite';
-import glob from 'glob';
 import injectHTML from 'vite-plugin-html-inject';
-import FullReload from 'vite-plugin-full-reload';
 
-export default defineConfig(({ command }) => {
-  return {
-    define: {
-      [command === 'serve' ? 'global' : '_global']: {},
-    },
-    root: 'src',
-    build: {
-      sourcemap: true,
-
-      rollupOptions: {
-        input: glob.sync('./src/*.html'),
-        output: {
-          manualChunks(id) {
-            if (id.includes('node_modules')) {
-              return 'vendor';
-            }
-          },
-          entryFileNames: 'commonHelpers.js',
-        },
+export default defineConfig({
+  base: '/goit-js-hw-10/',
+  root: './src',
+  build: {
+    outDir: '../dist',
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        'index': '/1-timer.html', // Указываем точный путь к вашему HTML-файлу
       },
-      outDir: '../dist',
     },
-    plugins: [injectHTML(), FullReload(['./src/**/**.html'])],
-  };
+  },
+  plugins: [
+    injectHTML({
+      injectData: {
+        title: 'Your App Title',
+      },
+    }),
+  ],
 });
