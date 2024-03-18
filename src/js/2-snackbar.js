@@ -1,9 +1,9 @@
-
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
 
 form.addEventListener('submit', onPromiseCreate);
-
 function onPromiseCreate(e) {
   e.preventDefault();
   const radio = form.querySelectorAll("input[type='radio']");
@@ -23,17 +23,13 @@ function createPromise(delay, value) {
       if (value === 'fulfilled') {
         resolve(
           iziToast.show({
-            message: `✅ Fulfilled promise in ms ${delay}`,
-            color: 'green',
-            position: 'topRight',
+            message: `? Fulfilled promise in ms ${delay}`,
           })
         );
       } else {
         reject(
           iziToast.show({
-            message: `❌ Rejected promise in ms ${delay}`,
-            color: 'red',
-            position: 'topRight',
+            message: `? Rejected promise in ms ${delay}`,
           })
         );
       }
