@@ -23,13 +23,17 @@ function createPromise(delay, value) {
       if (value === 'fulfilled') {
         resolve(
           iziToast.show({
-            message: `? Fulfilled promise in ms ${delay}`,
+            message: `✅ Fulfilled promise in ms ${delay}`,
+            position: 'topRight',
+            color: 'green',
           })
         );
       } else {
         reject(
           iziToast.show({
-            message: `? Rejected promise in ms ${delay}`,
+            message: `❌ Rejected promise in ms ${delay}`,
+            position: 'topRight',
+            color: 'red',
           })
         );
       }
